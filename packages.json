@@ -1,0 +1,24 @@
+{
+  "all": {
+    "brew": ["dysk"],
+    "packages": [
+      "amfora",
+      "cmatrix",
+      "duf",
+      "eog",
+      "ffmpeg",
+      "globalprotect-openconnect",
+      "lshw",
+      "mise",
+      "onefetch",
+      "rhythmbox",
+      "unzip"
+    ],
+    "repos": [
+      "jdxcode/mise",
+      "hyperreal/amfora",
+      "varlad/onefetch",
+      "yuezk/globalprotect-openconnect"
+    ]
+  }
+}

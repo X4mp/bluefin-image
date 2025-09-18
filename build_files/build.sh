@@ -9,9 +9,39 @@ set -ouex pipefail
 # List of rpmfusion packages can be found here:
 # https://mirrors.rpmfusion.org/mirrorlist?path=free/fedora/updates/39/x86_64/repoview/index.html&protocol=https&redirect=1
 
-# this installs a package from fedora repos
-dnf5 install -y tmux 
+readarray -t ENALED_REPOS < <(jq -r "[(.all | (select(.repos != null).repos)[])] \
+                    | sort | unique[]" /tmp/packages.json)
+# Enable Copr Repos
+if [[ "${#ENALED_REPOS[@]}" -gt 0 ]]; then
+    dnf5 -y copr enable "${ENALED_REPOS[@]}"
+else
+    echo "No packages to install."
+fi
 
+readarray -t INCLUDED_PACKAGES < <(jq -r "[(.all | (select(.packages != null).packages)[])] \
+                    | sort | unique[]" /tmp/packages.json)
+# Install Packages
+if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
+    dnf5 -y install "${INCLUDED_PACKAGES[@]}"
+else
+    echo "No packages to install."
+fi
+
+# Disable Copr Repos so they don't end up in the final repo
+if [[ "${#ENALED_REPOS[@]}" -gt 0 ]]; then
+    dnf5 -y copr disable "${ENALED_REPOS[@]}"
+else
+    echo "No packages to install."
+fi
+
+readarray -t INCLUDED_PACKAGES < <(jq -r "[(.all | (select(.brew != null).brew)[])] \
+                    | sort | unique[]" /tmp/packages.json)
+# Install Packages
+if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
+    brew install "${INCLUDED_PACKAGES[@]}"
+else
+    echo "No packages to install."
+fi
 # Use a COPR Example:
 #
 # dnf5 -y copr enable ublue-os/staging
@@ -22,3 +52,6 @@ dnf5 install -y tmux
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+
+
+pyinfra @local packages.py
