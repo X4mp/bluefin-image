@@ -52,6 +52,3 @@ fi
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
-
-
-pyinfra @local packages.py
