@@ -46,18 +46,18 @@ else
 fi
 echo "::endgroup::"
 
-echo "::group:: Install brew Packages"
-readarray -t BREW_PACKAGES < <(jq -r "[(.all | (select(.brew != null).brew)[])] \
-                    | sort | unique[]" /tmp/packages.json)
-# Install Packages
-if [[ "${#BREW_PACKAGES[@]}" -gt 0 ]]; then
-    for pkg in "${BREW_PACKAGES[@]}"; do
-        brew install "$pkg"
-    done
-else
-    echo "No brew packages to install."
-fi
-echo "::endgroup::"
+# echo "::group:: Install brew Packages"
+# readarray -t BREW_PACKAGES < <(jq -r "[(.all | (select(.brew != null).brew)[])] \
+#                     | sort | unique[]" /tmp/packages.json)
+# # Install Packages
+# if [[ "${#BREW_PACKAGES[@]}" -gt 0 ]]; then
+#     for pkg in "${BREW_PACKAGES[@]}"; do
+#         brew install "$pkg"
+#     done
+# else
+#     echo "No brew packages to install."
+# fi
+# echo "::endgroup::"
 
 
 # Use a COPR Example:
