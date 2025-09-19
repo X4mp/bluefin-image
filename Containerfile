@@ -1,7 +1,7 @@
 # Allow build scripts to be referenced without being copied into the final image
 FROM scratch AS ctx
 COPY build_files /
-COPY packages.json /tmp
+COPY packages.json /
 
 # Base Image
 FROM ghcr.io/ublue-os/bluefin:stable
