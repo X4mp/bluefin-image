@@ -18,7 +18,9 @@ readarray -t ENALED_REPOS < <(jq -r "[(.all | (select(.repos != null).repos)[])]
                     | sort | unique[]" /tmp/packages.json)
 # Enable Copr Repos
 if [[ "${#ENALED_REPOS[@]}" -gt 0 ]]; then
-    dnf5 -y copr enable "${ENALED_REPOS[@]}"
+    for repo in "${ENALED_REPOS[@]}"; do
+        dnf5 -y copr enable "$repo"
+    done
 else
     echo "No coprs to enable."
 fi
@@ -36,20 +38,24 @@ fi
 
 # Disable Copr Repos so they don't end up in the final repo
 if [[ "${#ENALED_REPOS[@]}" -gt 0 ]]; then
-    dnf5 -y copr disable "${ENALED_REPOS[@]}"
+    for repo in "${ENALED_REPOS[@]}"; do
+        dnf5 -y copr disable "$repo"
+    done
 else
     echo "No coprs to disable."
 fi
 echo "::endgroup::"
 
 echo "::group:: Install brew Packages"
-readarray -t INCLUDED_PACKAGES < <(jq -r "[(.all | (select(.brew != null).brew)[])] \
+readarray -t BREW_PACKAGES < <(jq -r "[(.all | (select(.brew != null).brew)[])] \
                     | sort | unique[]" /tmp/packages.json)
 # Install Packages
-if [[ "${#INCLUDED_PACKAGES[@]}" -gt 0 ]]; then
-    brew install "${INCLUDED_PACKAGES[@]}"
+if [[ "${#BREW_PACKAGES[@]}" -gt 0 ]]; then
+    for pkg in "${BREW_PACKAGES[@]}"; do
+        brew install "$pkg"
+    done
 else
-    echo "No packages to install."
+    echo "No brew packages to install."
 fi
 echo "::endgroup::"
 
