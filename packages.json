@@ -1,13 +1,21 @@
 {
   "all": {
-    "brew": ["dysk"],
+    "brew": [
+      "dysk",
+      "k9s",
+      "danielfoehrkn/switch/switch",
+      "kubetail",
+      "FairwindsOps/tap/pluto",
+      "jnv",
+      "kube-score"
+    ],
     "packages": [
       "amfora",
       "cmatrix",
       "duf",
       "eog",
-      "ffmpeg",
       "globalprotect-openconnect",
+      "keepassxc",
       "lshw",
       "mise",
       "onefetch",

@@ -52,3 +52,5 @@ fi
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
