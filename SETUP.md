@@ -23,3 +23,4 @@ Brew:
   - FairwindsOps/tap/pluto
   - jnv
   - kube-score
+  - johanhaleby/kubetail/kubetail
