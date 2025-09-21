@@ -1,25 +1,14 @@
 {
   "all": {
-    "brew": [
-      "dysk",
-      "k9s",
-      "danielfoehrkn/switch/switch",
-      "kubetail",
-      "FairwindsOps/tap/pluto",
-      "jnv",
-      "kube-score"
-    ],
     "packages": [
       "amfora",
       "cmatrix",
       "duf",
       "eog",
       "globalprotect-openconnect",
-      "keepassxc",
       "lshw",
       "mise",
       "onefetch",
-      "rhythmbox",
       "unzip"
     ],
     "repos": [
