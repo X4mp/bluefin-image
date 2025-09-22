@@ -70,3 +70,5 @@ echo "::endgroup::"
 #### Example for enabling a System Unit File
 
 systemctl enable podman.socket
+
+cp Justfiles/* /usr/share/ublue-os/just/

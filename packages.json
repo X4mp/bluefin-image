@@ -9,15 +9,13 @@
       "lshw",
       "mise",
       "onefetch",
-      "unzip",
-      "webapp-manager"
+      "unzip"
     ],
     "repos": [
       "jdxcode/mise",
       "hyperreal/amfora",
       "varlad/onefetch",
-      "yuezk/globalprotect-openconnect",
-      "apicalshark/webapp-manager"
+      "yuezk/globalprotect-openconnect"
     ]
   }
 }
