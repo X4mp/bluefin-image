@@ -6,6 +6,7 @@ set -ouex pipefail
 
 echo "::group:: Copy Files"
 cp /ctx/packages.json /tmp/packages.json
+cp /ctx/Justfiles /tmp/just/
 echo "::endgroup::"
 
 # Packages can be installed from any enabled yum repo on the image.
@@ -71,4 +72,5 @@ echo "::endgroup::"
 
 systemctl enable podman.socket
 
-cp Justfiles/* /usr/share/ublue-os/just/
+# Consolidate Just Files
+find /tmp/just -iname '*.just' -exec printf "\n\n" \; -exec cat {} \; >>/usr/share/ublue-os/just/60-custom.just
