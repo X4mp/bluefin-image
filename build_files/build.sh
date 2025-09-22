@@ -6,7 +6,7 @@ set -ouex pipefail
 
 echo "::group:: Copy Files"
 cp /ctx/packages.json /tmp/packages.json
-cp /ctx/Justfiles /tmp/just/
+cp /ctx/just /tmp/just/
 echo "::endgroup::"
 
 # Packages can be installed from any enabled yum repo on the image.
